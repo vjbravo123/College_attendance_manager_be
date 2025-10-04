@@ -7,7 +7,7 @@ export const teacherLogin =async (req, res) => {
         const data = await User.findOne({ username });
         console.log(data);
         
-        if (!data) { return res.status(404).json({message:"No user found"}) }
+        if (!data) { return res.json({message:"No user found"}) }
 
         const compare = await bcrypt.compare(password, data.password);
 
