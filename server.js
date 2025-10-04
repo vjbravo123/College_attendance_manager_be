@@ -4,13 +4,23 @@ import loginRouter from './Routes/Login.Routes.js';
 import attendanceRouter from './Routes/Attendance.Rotues.js';
 import connectDB from './Config/ConnectDb.js';
 import queryRouter from './Routes/Query.Router.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
 const app = express();
-const PORT = 8080;
+const uri = process.env.MONGO_URI;
+const PORT = process.env.PORT || 8080;
+const CLIENT = process.env.CLIENT;
+
 
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+    origin : `${CLIENT}`,
+    methods : [ 'GET','POST' , 'PUT' , 'DELETE'],
+    credentials: true
+}))
 
-connectDB('mongodb://127.0.0.1:27017/College');
+connectDB(uri);
 
 app.use('/auth', loginRouter);
 
