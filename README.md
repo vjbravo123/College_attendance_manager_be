@@ -9,7 +9,7 @@
 
 Welcome to the **College Attendance Manager Backend**! This backend powers the attendance management system for students and teachers, providing a seamless and secure way to track, manage, and report attendance. Built with **Express.js** and **MongoDB**, it ensures fast and reliable performance.
 
-<img src="https://stock.adobe.com/search?k=database+design" alt="Backend GIF" width="400" />
+<img src="https://imgs.search.brave.com/qN2qxl2fjKzCUOTIjOSsxbKwoDk3FoenCXx4b1scNrk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzE1LzAxLzg4Lzkx/LzM2MF9GXzE1MDE4/ODkxNDNfenFKSlJB/ZXpHQU5HMDM1ZlQ3/WWlTUTluZW9rWU8y/aEMuanBn" alt="Backend GIF" width="400" />
 
 ## 🎯 Features
 
