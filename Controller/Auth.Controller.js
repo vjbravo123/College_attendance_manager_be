@@ -7,7 +7,7 @@ export const teacherLogin =async (req, res) => {
         const data = await User.findOne({ username });
         console.log(data);
         
-        if (!data) { return res.status(404).json }
+        if (!data) { return res.status(404).json({message:"No user found"}) }
 
         const compare = await bcrypt.compare(password, data.password);
 
@@ -24,11 +24,14 @@ export const teacherLogin =async (req, res) => {
 
 export const teacherSignup = async (req, res) => {
     try {
-        const { username, password , subject } = req.body;
+        const {formData} = req.body;
+   
+        
+        const { username, password , subject } = formData;
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
-        const data = await User.create({ username, password: hash , subject });
-        return res.json(data);
+        await User.create({ username, password: hash , subject });
+        return res.json({signedUp:true});
     } catch (error) {
         console.error("Error while signup :" , error);
     }
@@ -36,11 +39,17 @@ export const teacherSignup = async (req, res) => {
 }
 export const studentSignup = async (req, res) => {
     try {
-        const { username, password , roll_no } = req.body;
+        const {form} = req.body;
+        const { username, password , roll_no } = form;
+        const user = await StudentCred.findOne({roll_no});
+        if(user){
+            return res.json({message:"User with given roll_no already exists"});
+        }
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
         const data = await StudentCred.create({ username, password: hash , roll_no });
-        return res.json(data);
+        if(!data){return res.json({message:"Signup failed"})};
+        return res.json({signedUp : true});
     } catch (error) {
         console.error("Error while signup :" , error);
     }

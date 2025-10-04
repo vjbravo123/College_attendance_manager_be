@@ -12,7 +12,7 @@ const uri = process.env.MONGO_URI;
 const PORT = process.env.PORT || 8080;
 const CLIENT = process.env.CLIENT;
 
-
+app.use(express.urlencoded({extended:true}))
 app.use(express.json());
 app.use(cors({
     origin : `${CLIENT}`,

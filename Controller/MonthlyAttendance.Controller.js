@@ -1,6 +1,7 @@
 import Attendance from "../Models/Attendance.Model.js";
 
 const getMonthlyAttendance = async (req , res) => {
+    const {subject} = req.params;
     // Get current year and month
     const now = new Date();
     const year = now.getFullYear();
@@ -16,7 +17,8 @@ const getMonthlyAttendance = async (req , res) => {
         date : {
             $gte : startDate,
             $lte : endDate,
-        }
+        },
+        subject:subject
     } , {student_id:1 , _id:0 , date:1 , status:1}).populate('student_id' , 'name roll_no -_id ')
 
     const attendanceArr = MonthlyAttendance.map((e)=>({

@@ -12,7 +12,7 @@ attendanceRouter.get('/attendanceData' , getAttendanceData)
 
 attendanceRouter.post('/takeAttendance' , takeAttendance )
 
-attendanceRouter.get('/getMonthlyAttendace' , getMonthlyAttendance)
+attendanceRouter.get('/getMonthlyAttendace/:subject' , getMonthlyAttendance)
 
 
 
